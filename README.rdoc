@@ -12,7 +12,7 @@ An example app using Authy for two factor authentication.
     - Sessions are the current User's id stored in `session[:user_id]`
   2) Sign up for a trial Authy account
     - create a test app
-    - from the dashboard, copy your "Api Key for Testing"
+    - from the dashboard, copy your "Api Key for Production"
     - save that key as `authy_key` in config/secrets.yml
   3) Follow the install steps at https://github.com/authy/authy-ruby
     - Your API key will be `Rails.application.secrets.authy_key`
@@ -29,14 +29,22 @@ Most times you'll want 2FA to be optional. Registration has two steps:
 I do this by creating a TwoFactorAuthentication controller.
 
 `GET #setup` for rendering the setup page
-`POST #register` for receiving the post, firing the deetz to Authy, and redirecting to verify
+`POST #register` for
+  1) receiving the post
+  2) firing those deetz to Authy
+  3) storing the unverified Authy ID in the session (cos I'm lazy)
+  4) redirecting to verify
 `GET #verify` for rending the page where they enter their code
 `POST #verify` for receiving the post
+  1) if we can verify that code for the ID in the session, save it to the user
+  2) the user is now 2FA enabled
 
 === Verify 2FAd Users on Sign In
 
 === Excercises for the reader
 
+  * don't store the unverified ID in the session - save it to the user and use
+    (authy_id && verified_at.present?) to figure out if 2FA is enabled
   * Letting a user turn off 2FA
   * Letting a user force a (re)send of the SMS,
     if the app is broken or they didn't get it the first time

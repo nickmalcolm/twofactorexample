@@ -1,0 +1,17 @@
+<section>
+  <h1>Set Up Authy</h1>
+  <%= form_for :setup, url: two_factor_authentication_register_path do |f| %>
+
+    <%= f.label "Cellphone +" %>
+    <%= f.number_field :country_code, autofocus: :autofocus, maxlength: 2, style: "width: 3em", placeholder: "XX" %>
+    <%= f.number_field :cellphone, placeholder: "XX XXX XXXX" %>
+
+    <%= f.submit "Next" %>
+    <p>
+      When you click next, you'll be sent a text with a code to verify your number.
+    </p>
+    <p>
+      You can also install and use the Authy mobile app.
+    </p>
+  <% end %>
+</section>

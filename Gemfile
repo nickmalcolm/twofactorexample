@@ -17,3 +17,6 @@ gem 'bcrypt', '~> 3.1.7'
 
 # Use Authy to provide 2FA
 gem 'authy', '~> 2.4.2'
+
+# For stubbing in tests
+gem 'mocha', '~> 1.0.0', require: false, group: :test
