@@ -1,10 +1,10 @@
-== Two Factor Auth example app
+# Two Factor Auth example app
 
 An example app using Authy for two factor authentication.
 
-== Follow Along
+## Follow Along
 
-=== Get to the starting line
+### Get to the starting line
 
   1) Check out this repo at tag v0.1.0
     - Basic log in & out functionality is present.
@@ -17,7 +17,7 @@ An example app using Authy for two factor authentication.
   3) Follow the install steps at https://github.com/authy/authy-ruby
     - Your API key will be `Rails.application.secrets.authy_key`
 
-=== Let Users turn on 2FA
+### Let Users turn on 2FA
 
 Most times you'll want 2FA to be optional. Registration has two steps:
 
@@ -39,14 +39,14 @@ I do this by creating a TwoFactorAuthentication controller.
   1) if we can verify that code for the ID in the session, save it to the user
   2) the user is now 2FA enabled
 
-=== Verify 2FAd Users on Sign In
+### Verify 2FAd Users on Sign In
 
 1) During the regular SessionsController#create, check if 2FA is enabled
 2) If it is, render #two_factor_required
 3) Verify the token POSTed to #two_factor_verification is valid
 4) Continue with sign in
 
-=== Excercises for the reader
+## Excercises for the reader
 
 Code Smells:
 
