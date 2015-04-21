@@ -9,3 +9,8 @@ An example app using Authy for two factor authentication.
     - There is a User model, using Rails' `has_secure_password`
     - Sessions are the current User's id stored in `session[:user_id]`
   2) Sign up for a trial Authy account
+    - create a test app
+    - from the dashboard, copy your "Api Key for Testing"
+    - save that key as `authy_key` in config/secrets.yml
+  3) Follow the install steps at https://github.com/authy/authy-ruby
+    - Your API key will be `Rails.application.secrets.authy_key`
