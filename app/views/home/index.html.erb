@@ -1,12 +1,29 @@
 <section>
   <h1>2FA Example App</h1>
-  <p>
-    <% if current_user %>
-      You are logged in as <%= current_user.email %>. <%= link_to "Sign Out", sign_out_path, method: :delete %>
+  <% if current_user %>
+    <p>
+      You are logged in as <%= current_user.email %>.
+    </p>
+    <% if current_user.authy_id %>
+      <p>
+        You have 2FA turned ON.
+      </p>
     <% else %>
-      You are logged out. <%= link_to "Sign In", new_session_path %>
+      <p>
+        You have 2FA turned OFF. <%= link_to "Enable", two_factor_authentication_setup_path %>
+      </p>
     <% end %>
-  </p>
+    <p>
+      <%= link_to "Sign Out", sign_out_path, method: :delete %>
+    </p>
+  <% else %>
+    <p>
+      You are logged out.
+    </p>
+    <p>
+      <%= link_to "Sign In", new_session_path %>
+    </p>
+  <% end %>
 </section>
 <section>
   <marquee>
