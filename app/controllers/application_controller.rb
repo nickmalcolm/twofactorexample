@@ -9,4 +9,20 @@ class ApplicationController < ActionController::Base
   end
   helper_method :current_user
 
+  def require_current_user
+    if current_user
+      return true
+    else
+      respond_to do |format|
+        format.html {
+          redirect_to new_session_path, error: "Please sign in."
+        }
+        format.json {
+          head :unauthorized
+        }
+      end
+      return false
+    end
+  end
+
 end
