@@ -43,8 +43,14 @@ I do this by creating a TwoFactorAuthentication controller.
 
 === Excercises for the reader
 
-  * don't store the unverified ID in the session - save it to the user and use
-    (authy_id && verified_at.present?) to figure out if 2FA is enabled
+Code Smells:
+
+  * Don't store the unverified Authy ID in the session; it shouldn't be something
+     the user can mess with
+  * Make the controller actions thin
+
+Features:
+
   * Letting a user turn off 2FA
   * Letting a user force a (re)send of the SMS,
     if the app is broken or they didn't get it the first time

@@ -1,2 +1,14 @@
-<h1>TwoFactorAuthentication#verify</h1>
-<p>Find me in app/views/two_factor_authentication/verify.html.erb</p>
+<section>
+  <h1>Confirm Your Authy Code</h1>
+  <%= form_for :verify, url: two_factor_authentication_verify_path do |f| %>
+
+    <%= f.label "Token" %>
+    <%= f.text_field :token, autofocus: :autofocus %>
+
+    <%= f.submit "Enable 2FA" %>
+    <p>
+      This code will have been sent via SMS, or be
+      accessable in the Authy mobile app.
+    </p>
+  <% end %>
+</section>

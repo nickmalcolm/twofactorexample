@@ -28,11 +28,24 @@ class TwoFactorAuthenticationController < ApplicationController
   end
 
   def verify
+    if request.post?
+      response = Authy::API.verify(id: session[:pending_authy_id], token: verify_params[:token], force: true)
+      if response.ok?
+        current_user.update(authy_id: session[:pending_authy_id])
+        redirect_to root_path, notice: "2FA Enabled!"
+      else
+        flash.now[:error] = "Sorry, that 2FA code was invalid"
+      end
+    end
   end
 
   private
     def setup_params
       params.require(:setup).permit(:country_code, :cellphone)
+    end
+
+    def verify_params
+      params.require(:verify).permit(:token)
     end
 
 end
