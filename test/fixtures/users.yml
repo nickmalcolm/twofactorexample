@@ -1,0 +1,5 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+nick:
+  email: nick@revert.io
+  password_digest: "$2a$10$w3kcQMZmD6dycYmdIkerg.mi0GbG0j6uHpiSiy4vWw1s3wnT.bOa2"
