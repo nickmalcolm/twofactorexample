@@ -1,0 +1,3 @@
+== Two Factor Auth example app
+
+An example app using Authy for two factor authentication.
