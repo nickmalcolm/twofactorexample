@@ -1,6 +1,12 @@
 <section>
   <h1>2FA Example App</h1>
-  <p>You are logged out.</p>
+  <p>
+    <% if current_user %>
+      You are logged in as <%= current_user.email %>. <%= link_to "Sign Out", sign_out_path, method: :delete %>
+    <% else %>
+      You are logged out. <%= link_to "Sign In", new_session_path %>
+    <% end %>
+  </p>
 </section>
 <section>
   <marquee>

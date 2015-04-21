@@ -8,6 +8,14 @@
 </head>
 <body>
 
+<% flash.each do |key, value| %>
+  <p style="color: <%= key.eql?("error") ? "red" : "green" %>;border:100%;border: 2px solid;">
+    <strong>
+      <%= value %>
+    </strong>
+  </p>
+<% end %>
+
 <%= yield %>
 
 </body>
