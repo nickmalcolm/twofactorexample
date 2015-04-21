@@ -42,7 +42,7 @@ class SessionsController < ApplicationController
       redirect_to root_path
     else
       session[:pending_user_id] = nil
-      redirect_to new_session_path, notice: "That 2FA code was invalid"
+      redirect_to new_session_path, error: "That 2FA code was invalid"
     end
   end
 
@@ -51,7 +51,7 @@ class SessionsController < ApplicationController
     def require_pending_user
       @pending_user = User.find_by(id: session[:pending_user_id])
       unless @pending_user && @pending_user.authy_id
-        redirect_to new_session_path, notice: "Please sign in"
+        redirect_to new_session_path, error: "Please sign in"
       end
     end
 
