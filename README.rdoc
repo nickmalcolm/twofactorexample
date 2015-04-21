@@ -1,3 +1,11 @@
 == Two Factor Auth example app
 
 An example app using Authy for two factor authentication.
+
+== Follow Along
+
+  1) Check out this repo at tag v0.1.0
+    - Basic log in & out functionality is present.
+    - There is a User model, using Rails' `has_secure_password`
+    - Sessions are the current User's id stored in `session[:user_id]`
+  2) Sign up for a trial Authy account
