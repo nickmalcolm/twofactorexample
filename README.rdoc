@@ -41,6 +41,11 @@ I do this by creating a TwoFactorAuthentication controller.
 
 === Verify 2FAd Users on Sign In
 
+1) During the regular SessionsController#create, check if 2FA is enabled
+2) If it is, render #two_factor_required
+3) Verify the token POSTed to #two_factor_verification is valid
+4) Continue with sign in
+
 === Excercises for the reader
 
 Code Smells:
