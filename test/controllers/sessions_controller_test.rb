@@ -19,17 +19,21 @@ class SessionsControllerTest < ActionController::TestCase
     user = users(:nick)
     user.update(authy_id: 1)
 
+    Authy::API.expects(:request_sms).with(id: 1)
+
     post :create, session: {
       email: "nick@revert.io",
       password: "secret"
     }
-    assert_redirected_to session_two_factor_required_path
+    assert_redirected_to sessions_two_factor_required_path
     assert_nil session[:user_id]
+    assert_equal user.id, session[:pending_user_id], "Should track pending sign in ID"
   end
 
-  test "posting a valid token to #two_factor_verification signs in" do
+  test "with 2FA enabled, posting a valid token to #two_factor_verification signs in" do
     user = users(:nick)
     user.update(authy_id: 1)
+    session[:pending_user_id] = user.id
 
     Authy::API.expects(:verify).with(
       id: 1,
@@ -44,9 +48,10 @@ class SessionsControllerTest < ActionController::TestCase
     assert_equal users(:nick).id, session[:user_id]
   end
 
-  test "posting an invalid token to #two_factor_verification requires sign in" do
+  test "with 2FA enabled, posting an invalid token to #two_factor_verification requires sign in" do
     user = users(:nick)
     user.update(authy_id: 1)
+    session[:pending_user_id] = user.id
 
     Authy::API.expects(:verify).with(
       id: 1,

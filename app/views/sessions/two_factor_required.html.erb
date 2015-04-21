@@ -1,0 +1,14 @@
+<section>
+  <h1>Two Factor Authentication Required</h1>
+  <%= form_for :verification, url: sessions_two_factor_verification_path do |f| %>
+
+    <%= f.label "Token" %>
+    <%= f.number_field :token, autofocus: :autofocus %>
+
+    <%= f.submit "Continue" %>
+    <p>
+      This code will have been sent via SMS, or be
+      accessable in the Authy mobile app.
+    </p>
+  <% end %>
+</section>
